@@ -15,28 +15,9 @@
         android:text="Bestellungen - Tische"
         android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/ButtonTisch1"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tisch 1" />
-
-    <Button
-        android:id="@+id/ButtonTisch2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tisch 2" />
-
-    <Button
-        android:id="@+id/ButtonTisch3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tisch 3" />
-
-    <Button
-        android:id="@+id/ButtonTisch4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tisch 4" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>
