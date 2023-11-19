@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<TischBestellungenModel> tischBestellungenListe = new ArrayList<>();
+    ArrayList<TischeBestellungenModel> tischBestellungenListe = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
 
-        setUpTischBestellungenListe(20);
+        setUpTischBestellungenListe(30);
 
         TB_RecyclerViewAdapter adapter = new TB_RecyclerViewAdapter(this, tischBestellungenListe);
         recyclerView.setAdapter(adapter);
@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpTischBestellungenListe(int tischAnzahl){
-        for (int i = 1; i < tischAnzahl; i++) {
-            tischBestellungenListe.add(new TischBestellungenModel(i, 1, false));
+        for (int i = 1; i <= tischAnzahl; i++) {
+            tischBestellungenListe.add(new TischeBestellungenModel(i, 1, false));
         }
     }
 }

@@ -1,11 +1,11 @@
 package com.gastrogo.sortierte_bestellungen_2;
 
-public class TischBestellungenModel {
+public class TischeBestellungenModel {
     private int tischNr;
     private int timer;
     private boolean isBestellungAktiv;
 
-    public TischBestellungenModel(int tischNr, int timer, boolean isBestellungAktiv) {
+    public TischeBestellungenModel(int tischNr, int timer, boolean isBestellungAktiv) {
         this.tischNr = tischNr;
         this.timer = timer;
         this.isBestellungAktiv = isBestellungAktiv;
@@ -19,7 +19,7 @@ public class TischBestellungenModel {
         return timer;
     }
 
-    public boolean isBestellungAktiv() {
+    public boolean getBestellungAktiv() {
         return isBestellungAktiv;
     }
 
