@@ -23,5 +23,9 @@ public class TischeBestellungenModel {
         return isBestellungAktiv;
     }
 
+    public void setBestellungAktiv(boolean bestellungAktiv) {
+        isBestellungAktiv = bestellungAktiv;
+    }
+
 
 }
