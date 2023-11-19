@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import androidx.annotation.NonNull;
@@ -44,6 +45,7 @@ public class TB_RecyclerViewAdapter extends RecyclerView.Adapter<TB_RecyclerView
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                holder.cardView.setCardBackgroundColor(1);
                 // Handle the click event for the specific item
                 // You can perform any action here
                 // For example, start a new activity, show a toast, etc.
@@ -63,6 +65,7 @@ public class TB_RecyclerViewAdapter extends RecyclerView.Adapter<TB_RecyclerView
         TextView tvTableNumber, tvTimer;
         CheckBox finishedCheckbox;
         ConstraintLayout constraintLayout;
+        CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,6 +74,7 @@ public class TB_RecyclerViewAdapter extends RecyclerView.Adapter<TB_RecyclerView
             tvTableNumber = itemView.findViewById(R.id.tablenumbertext);
             tvTimer = itemView.findViewById(R.id.tabletimertext);
             finishedCheckbox = itemView.findViewById(R.id.finishBestellung);
+            cardView = itemView.findViewById(R.id.cardView);
         }
 
         private void showToast(String message){
