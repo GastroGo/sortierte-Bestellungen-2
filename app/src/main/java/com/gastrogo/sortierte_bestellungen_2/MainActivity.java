@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpTischBestellungenListe(int tischAnzahl){
         for (int i = 1; i <= tischAnzahl; i++) {
-            tischBestellungenListe.add(new TischeBestellungenModel(i, 1, false));
+            int random = (int)(Math.random() * 50 + 1);
+            tischBestellungenListe.add(new TischeBestellungenModel(i, random, false));
         }
     }
 }
