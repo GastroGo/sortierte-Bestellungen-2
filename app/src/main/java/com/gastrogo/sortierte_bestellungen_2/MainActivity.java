@@ -27,20 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Sort the list based on the 'isBestellungAktiv' flag and 'timer'
-        Collections.sort(tischeBestellungenListe.tischBestellungenListe, new Comparator<TischeBestellungenModel>() {
-            @Override
-            public int compare(TischeBestellungenModel t1, TischeBestellungenModel t2) {
-                // Sort by 'isBestellungAktiv' flag in descending order (true comes first)
-                int flagComparison = Boolean.compare(t2.getBestellungAktiv(), t1.getBestellungAktiv());
-
-                // If 'isBestellungAktiv' flags are equal, sort by 'timer' in ascending order
-                if (flagComparison == 0) {
-                    return Integer.compare(t1.getTimer(), t2.getTimer());
-                }
-
-                return flagComparison;
-            }
-        });
+        tischeBestellungenListe.sortTischBestellungenListe();
 
         TB_RecyclerViewAdapter adapter = new TB_RecyclerViewAdapter(this);
         recyclerView.setAdapter(adapter);
@@ -51,8 +38,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpTischBestellungenListe(int tischAnzahl){
         for (int i = 1; i <= tischAnzahl; i++) {
-            int randomTimer = (int)(Math.random() * 50 + 1);
+            int randomTimer = 0;
             boolean isBestellungAktiv = Math.random() < 0.5; // Randomly set isBestellungAktiv to true or false
+            if (isBestellungAktiv){
+                randomTimer = (int)(Math.random() * 50 + 1);
+            }
+
             tischeBestellungenListe.tischBestellungenListe.add(new TischeBestellungenModel(i, randomTimer, isBestellungAktiv));
         }
     }

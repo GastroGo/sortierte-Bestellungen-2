@@ -8,8 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class TischBestellungen extends AppCompatActivity {
+
+    TischeBestellungenListe tischeBestellungenListe = TischeBestellungenListe.getInstance();
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +21,8 @@ public class TischBestellungen extends AppCompatActivity {
         setContentView(R.layout.activity_tisch_bestellungen);
 
         Button goBackButton = findViewById(R.id.GoBackButton);
+        title = findViewById(R.id.tvTitle);
+        title.setText("Bestellungen - Tisch " + tischeBestellungenListe.getClickedTable());
 
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override

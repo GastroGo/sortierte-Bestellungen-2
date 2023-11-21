@@ -20,10 +20,12 @@ public class TB_RecyclerViewAdapter extends RecyclerView.Adapter<TB_RecyclerView
 
     static Context context;
     ArrayList<TischeBestellungenModel> tischBestellungenListe;
+    TischeBestellungenListe tischeBestellungenObjekt;
 
     public TB_RecyclerViewAdapter(Context context){
         this.context = context;
-        this.tischBestellungenListe = TischeBestellungenListe.tischBestellungenListe;
+        this.tischeBestellungenObjekt = TischeBestellungenListe.getInstance();
+        this.tischBestellungenListe = tischeBestellungenObjekt.tischBestellungenListe;
     }
 
     @Override
@@ -51,6 +53,9 @@ public class TB_RecyclerViewAdapter extends RecyclerView.Adapter<TB_RecyclerView
                 // Assuming holder.cardView is your CardView reference
                 holder.cardView.setCardBackgroundColor(Color.GREEN);
 
+                // Set the clicked table number
+                TischeBestellungenListe.setClickedTable(tischBestellungenListe.get(holder.getAdapterPosition()).getTischNr());
+
                 // Handle the click event for the specific item
                 // You can perform any action here
                 // For example, start a new activity, show a toast, etc.
@@ -66,14 +71,16 @@ public class TB_RecyclerViewAdapter extends RecyclerView.Adapter<TB_RecyclerView
                 if (adapterPosition != RecyclerView.NO_POSITION) {
                     if (holder.finishedCheckbox.isChecked()) {
                         holder.finishedCheckbox.setChecked(true);
-                        holder.showToast("Bestellung für Tisch " + (adapterPosition + 1) + " wurde abgeschlossen");
+                        holder.showToast("Bestellung für Tisch " + (tischBestellungenListe.get(adapterPosition).getTischNr()) + " wurde abgeschlossen");
                         tischBestellungenListe.get(adapterPosition).setBestellungAktiv(false);
                     } else {
                         holder.finishedCheckbox.setChecked(false);
-                        holder.showToast("Bestellung für Tisch " + (adapterPosition + 1) + " wurde wieder aktiviert");
+                        holder.showToast("Bestellung für Tisch " + (tischBestellungenListe.get(adapterPosition).getTischNr()) + " wurde wieder aktiviert");
                         tischBestellungenListe.get(adapterPosition).setBestellungAktiv(true);
                     }
                 }
+                tischeBestellungenObjekt.sortTischBestellungenListe();
+                notifyDataSetChanged();
             }
         });
     }
