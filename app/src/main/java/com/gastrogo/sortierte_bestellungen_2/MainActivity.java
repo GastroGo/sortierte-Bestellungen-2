@@ -12,13 +12,19 @@ import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
+    TablelistModel tableListO = TablelistModel.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
+        tableListO.fillDateSet(20);
 
+        RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
+        RV_Adapter_Tische adapterTische = new RV_Adapter_Tische();
+        recyclerView.setAdapter(adapterTische);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 }
