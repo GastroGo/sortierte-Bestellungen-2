@@ -44,6 +44,8 @@ public class RV_Adapter_Tische extends RecyclerView.Adapter<RV_Adapter_Tische.Vi
             @Override
             public void onClick(View view) {
                 tableListO.setTableSatus(pos, !tableListO.getTableStatus(pos));
+                tableListO.sortTischBestellungenListe();
+                notifyDataSetChanged();
             }
         });
 
