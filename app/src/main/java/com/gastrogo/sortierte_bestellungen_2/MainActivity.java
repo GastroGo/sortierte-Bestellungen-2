@@ -1,6 +1,7 @@
 package com.gastrogo.sortierte_bestellungen_2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
         RV_Adapter_Tische adapterTische = new RV_Adapter_Tische();
         recyclerView.setAdapter(adapterTische);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
     }
 }

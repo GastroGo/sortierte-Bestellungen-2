@@ -29,10 +29,11 @@ public class RV_Adapter_Tische extends RecyclerView.Adapter<RV_Adapter_Tische.Vi
     @Override
     public void onBindViewHolder(@NonNull RV_Adapter_Tische.ViewHolder holder, int position) {
         //setting Data
-        holder.tableNr.setText(String.valueOf(tableListO.getTableNr(position)));
-        holder.timer.setText(tableListO.getTableTimer(position));
+        int pos = position;
+        holder.tableNr.setText("Table " + String.valueOf(tableListO.getTableNr(pos)));
+        holder.timer.setText(tableListO.getTableTimer(pos));
 
-        if (tableListO.getTableStatus(position)) {
+        if (tableListO.getTableStatus(pos)) {
             holder.checkBox.setChecked(true);
         } else {
             holder.checkBox.setChecked(false);
@@ -42,14 +43,14 @@ public class RV_Adapter_Tische extends RecyclerView.Adapter<RV_Adapter_Tische.Vi
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tableListO.setTableSatus(position, !tableListO.getTableStatus(position));
+                tableListO.setTableSatus(pos, !tableListO.getTableStatus(pos));
             }
         });
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.showToast(view.getContext(), ("Tisch Nr. " + String.valueOf(tableListO.getTableNr(position))));
+                holder.showToast(view.getContext(), ("Tisch Nr. " + String.valueOf(tableListO.getTableNr(pos))));
             }
         });
 
