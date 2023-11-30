@@ -1,8 +1,6 @@
-package com.gastrogo.sortierte_bestellungen_2;
+package com.gastrogo.sortierte_bestellungen_2.Data;
 
 import android.os.Build;
-
-import com.gastrogo.sortierte_bestellungen_2.TableData;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -2,16 +2,13 @@ package com.gastrogo.sortierte_bestellungen_2;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import com.gastrogo.sortierte_bestellungen_2.Data.TablelistModel;
 
 public class MainActivity extends AppCompatActivity {
 

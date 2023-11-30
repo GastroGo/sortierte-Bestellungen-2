@@ -1,4 +1,4 @@
-package com.gastrogo.sortierte_bestellungen_2;
+package com.gastrogo.sortierte_bestellungen_2.Data;
 
 public class TableData {
 
