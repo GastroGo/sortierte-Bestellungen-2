@@ -1,6 +1,7 @@
 package com.gastrogo.sortierte_bestellungen_2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gastrogo.sortierte_bestellungen_2.Data.TableData;
 import com.gastrogo.sortierte_bestellungen_2.Data.TablelistModel;
+import com.gastrogo.sortierte_bestellungen_2.Tisch.TischBestellungen;
 
 import java.util.ArrayList;
 
@@ -56,6 +58,10 @@ public class RV_Adapter_Tische extends RecyclerView.Adapter<RV_Adapter_Tische.Vi
             @Override
             public void onClick(View view) {
                 holder.showToast(view.getContext(), ("Tisch Nr. " + String.valueOf(tableListO.getTableNr(pos))));
+                Intent intent = new Intent(view.getContext(), TischBestellungen.class);
+                intent.putExtra("TableNr", tableListO.getTableNr(pos));
+                view.getContext().startActivity(intent);
+
             }
         });
 
