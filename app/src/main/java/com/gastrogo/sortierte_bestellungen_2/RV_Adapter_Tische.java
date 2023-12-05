@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gastrogo.sortierte_bestellungen_2.DBKlassen.Tische;
 import com.gastrogo.sortierte_bestellungen_2.Data.TableData;
 import com.gastrogo.sortierte_bestellungen_2.Data.TablelistModel;
 import com.gastrogo.sortierte_bestellungen_2.Tisch.TischBestellungen;
@@ -23,6 +24,7 @@ public class RV_Adapter_Tische extends RecyclerView.Adapter<RV_Adapter_Tische.Vi
 
     TablelistModel tableListO = TablelistModel.getInstance();
     ArrayList<TableData> tableList = TablelistModel.getTableDataArrayList();
+    Tische tische = Tische.getInstance();
 
     @NonNull
     @Override
