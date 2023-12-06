@@ -6,20 +6,7 @@ public class Tische {
     private int personen;
     private Map<String, Integer> bestellungen;
 
-    private static Tische instance;
-
-    private Tische() {
-    }
-
-    public static Tische getInstance(){
-        if(instance == null){
-            instance = new Tische();
-        }
-        return instance;
-    }
-
-    public void setInstance(Tische instance){
-        this.instance = instance;
+    public Tische() {
     }
 
     public int getPersonen() {

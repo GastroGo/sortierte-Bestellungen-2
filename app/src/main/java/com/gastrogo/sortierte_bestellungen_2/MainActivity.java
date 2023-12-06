@@ -5,13 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.gastrogo.sortierte_bestellungen_2.DBKlassen.Daten;
+import com.gastrogo.sortierte_bestellungen_2.DBKlassen.TablelistModel;
 import com.gastrogo.sortierte_bestellungen_2.DBKlassen.Tische;
-import com.gastrogo.sortierte_bestellungen_2.Data.TablelistModel;
+import com.gastrogo.sortierte_bestellungen_2.Tisch.TischBestellungen;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,60 +21,51 @@ import com.google.firebase.database.ValueEventListener;
 
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RV_Adapter_Tische.OnItemClickListener {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dbRef = database.getReference("Restaurants");
 
     TablelistModel tableListO = TablelistModel.getInstance();
-    Button randStatusBT;
     RecyclerView recyclerView;
-    Tische tische;
+
     int NumberOfTables = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        tische = Tische.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        randStatusBT = findViewById(R.id.RandButton);
-
-
-
-        tableListO.fillDateSet(NumberOfTables);
-
         recyclerView = findViewById(R.id.mRecyclerView);
-        RV_Adapter_Tische adapterTische = new RV_Adapter_Tische();
+        RV_Adapter_Tische adapterTische = new RV_Adapter_Tische(this);
         recyclerView.setAdapter(adapterTische);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
-
-        randStatusBT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int index = (int) (Math.random() * (NumberOfTables - 1) + 1);
-                tableListO.setTableSatus(index , !tableListO.getTableStatus(index));
-                tableListO.sortTischBestellungenListe();
-                adapterTische.notifyDataSetChanged();
-            }
-        });
-
-        dbRef.child("-NkF_dqyroONEdMqgfgC").addValueEventListener(new ValueEventListener(){
-
-
+        dbRef.child("-NkF_dqyroONEdMqgfgC").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                tische.setInstance(snapshot.child("tische").getValue(Tische.class));
+                NumberOfTables = (int) snapshot.child("tische").getChildrenCount();
+                tableListO.setup(NumberOfTables);
+
+                for(int x = 0; x < NumberOfTables; x++){
+                    String xString = String.format("%03d", (x + 1));
+                    tableListO.getTischeArray()[x] = snapshot.child("tische").child(xString).getValue(Tische.class);
+                }
+
+                adapterTische.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Handle error
             }
         });
     }
+
+    @Override
+    public void onItemClick(int tableNumber) {
+        Intent intent = new Intent(this, TischBestellungen.class);
+        intent.putExtra("TableNr", tableNumber);
+        startActivity(intent);
+    }
 }
-
-
-

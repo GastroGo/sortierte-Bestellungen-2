@@ -19,12 +19,12 @@ public class TischBestellungen extends AppCompatActivity {
 
         TextView title = findViewById(R.id.TischBestellungenTitle);
 
+        int tischNr = getIntent().getIntExtra("TableNr", -1);
+
         RecyclerView recyclerView = findViewById(R.id.BestellungenRecyclerView);
-        RV_Adapter_Bestellungen adapterBestellungen = new RV_Adapter_Bestellungen();
+        RV_Adapter_Bestellungen adapterBestellungen = new RV_Adapter_Bestellungen(tischNr);
         recyclerView.setAdapter(adapterBestellungen);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        int tischNr = getIntent().getIntExtra("TableNr", -1);
 
         title.setText("Tisch " + tischNr);
 
