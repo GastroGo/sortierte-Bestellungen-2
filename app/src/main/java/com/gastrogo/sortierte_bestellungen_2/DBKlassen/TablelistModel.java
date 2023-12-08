@@ -41,4 +41,26 @@ public class TablelistModel {
         tischeArray = new Tische[this.numberOfTables];
     }
 
+    public void setTable(Tische table, int index){
+        tischeArray[index] = table;
+    }
+
+    public int getIndexOf(String tableName){
+        StringBuilder tName = new StringBuilder(tableName);
+        StringBuilder sbNummer = new StringBuilder(tName.length() - 1);
+        String sNummer;
+        int iNummer;
+
+        for (int x = tName.length() - 1; x > 0; x--){
+            if (String.valueOf(tName.charAt(x)).matches("[0-9]")){
+                sbNummer.insert(0, tName.charAt(x));
+            }
+        }
+
+        sNummer = sbNummer.toString();
+        iNummer = Integer.parseInt(sNummer);
+
+        return iNummer;
+    }
+
 }

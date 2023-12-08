@@ -1,4 +1,4 @@
-package com.gastrogo.sortierte_bestellungen_2;
+package com.gastrogo.sortierte_bestellungen_2.Tische;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gastrogo.sortierte_bestellungen_2.DBKlassen.Tische;
 
 import com.gastrogo.sortierte_bestellungen_2.DBKlassen.TablelistModel;
+import com.gastrogo.sortierte_bestellungen_2.R;
 
 public class RV_Adapter_Tische extends RecyclerView.Adapter<RV_Adapter_Tische.ViewHolder> {
 
@@ -42,6 +43,8 @@ public class RV_Adapter_Tische extends RecyclerView.Adapter<RV_Adapter_Tische.Vi
             }
         });
     }
+
+
 
     @Override
     public int getItemCount() {

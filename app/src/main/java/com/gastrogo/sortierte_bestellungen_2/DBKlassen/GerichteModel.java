@@ -29,6 +29,12 @@ public class GerichteModel {
     }
 
     public String getGerichtName(String gerichtNummer){
+        String gerichtName = gerichte[getGerichNummer(gerichtNummer) - 1].getGericht();
+
+        return gerichtName;
+    }
+
+    public int getGerichNummer(String gerichtNummer){
         StringBuilder gericht = new StringBuilder(gerichtNummer);
         StringBuilder sbNummer = new StringBuilder(gericht.length() - 1);
         String sNummer;
@@ -42,12 +48,7 @@ public class GerichteModel {
 
         sNummer = sbNummer.toString();
         iNummer = Integer.parseInt(sNummer);
-
-        Log.i("gerichtNummer", sNummer);
-        Log.i("Gerichte: ", gerichte[iNummer - 1].getGericht());
-        String gerichtName = gerichte[iNummer - 1].getGericht();
-
-        return gerichtName;
+        return iNummer;
     }
 
 }
