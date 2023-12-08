@@ -1,5 +1,6 @@
 package com.gastrogo.sortierte_bestellungen_2.Tisch;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gastrogo.sortierte_bestellungen_2.DBKlassen.GerichteModel;
 import com.gastrogo.sortierte_bestellungen_2.DBKlassen.TablelistModel;
 import com.gastrogo.sortierte_bestellungen_2.R;
 
@@ -18,6 +20,7 @@ public class RV_Adapter_Bestellungen extends RecyclerView.Adapter<RV_Adapter_Bes
 
     int tableNumber;
     TablelistModel tableListO = TablelistModel.getInstance();
+    GerichteModel gerichteListeO = GerichteModel.getInstance();
     ArrayList<String[]> tableOrders = new ArrayList<String[]>();
 
     public RV_Adapter_Bestellungen(int tableNumber){
@@ -34,6 +37,7 @@ public class RV_Adapter_Bestellungen extends RecyclerView.Adapter<RV_Adapter_Bes
     @Override
     public void onBindViewHolder(@NonNull RV_Adapter_Bestellungen.ViewHolder holder, int position) {
         holder.dishName.setText(tableOrders.get(position)[0]);
+        holder.dishName.setText(gerichteListeO.getGerichtName(tableOrders.get(position)[0]));
         holder.numberDishes.setText(tableOrders.get(position)[1]);
     }
 

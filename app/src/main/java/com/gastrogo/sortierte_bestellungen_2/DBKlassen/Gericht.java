@@ -2,15 +2,15 @@ package com.gastrogo.sortierte_bestellungen_2.DBKlassen;
 
 import java.util.Map;
 
-public class Speisekarte {
+public class Gericht {
     private String gericht;
     private Double preis;
     private Map<String, Boolean> allergien, zutaten;
 
-    public Speisekarte() {
+    public Gericht() {
     }
 
-    public Speisekarte(String gericht, Double preis, Map<String, Boolean> allergien, Map<String, Boolean> zutaten) {
+    public Gericht(String gericht, Double preis, Map<String, Boolean> allergien, Map<String, Boolean> zutaten) {
         this.gericht = gericht;
         this.preis = preis;
         this.allergien = allergien;

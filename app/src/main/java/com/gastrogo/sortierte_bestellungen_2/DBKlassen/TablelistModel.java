@@ -6,6 +6,8 @@ public class TablelistModel {
 
     private Tische tischeArray[];
 
+
+
     private int numberOfTables;
 
     private TablelistModel() {
@@ -38,9 +40,5 @@ public class TablelistModel {
         this.numberOfTables = numberOfTables;
         tischeArray = new Tische[this.numberOfTables];
     }
-
-
-
-
 
 }
