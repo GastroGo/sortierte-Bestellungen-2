@@ -1,16 +1,46 @@
 package com.gastrogo.sortierte_bestellungen_2.DBKlassen;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class TablelistModel {
 
     private static TablelistModel instance;
 
     private Tische tischeArray[];
 
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference dbRef = database.getReference("Restaurants");
+
 
 
     private int numberOfTables;
 
     private TablelistModel() {
+        dbRef.child("-NkF_dqyroONEdMqgfgC").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int NumberOfTables = (int) snapshot.child("tische").getChildrenCount();
+                instance.setup(NumberOfTables);
+
+                for(int x = 0; x < NumberOfTables; x++){
+                    String xString = String.format("%03d", (x + 1));
+                    instance.getTischeArray()[x] = snapshot.child("tische").child(xString).getValue(Tische.class);
+                }
+
+                adapterBestellungen.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle error
+            }
+        });
     }
 
     public static TablelistModel getInstance() {
