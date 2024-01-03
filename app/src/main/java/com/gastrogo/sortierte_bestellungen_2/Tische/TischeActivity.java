@@ -44,7 +44,7 @@ public class TischeActivity extends AppCompatActivity implements RV_Adapter_Tisc
         recyclerView.setAdapter(adapterTische);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
-        dbRef.child("-NkF_dqyroONEdMqgfgC").addValueEventListener(new ValueEventListener() {
+        dbRef.child("-NnBQCxgwtnxnvuBu0tW").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 NumberOfTables = (int) snapshot.child("tische").getChildrenCount();
