@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.gastrogo.sortierte_bestellungen_2.DBKlassen.Gericht;
+import com.gastrogo.sortierte_bestellungen_2.DBKlassen.GerichteModel;
 import com.gastrogo.sortierte_bestellungen_2.DBKlassen.TablelistModel;
 import com.gastrogo.sortierte_bestellungen_2.DBKlassen.Tische;
 import com.gastrogo.sortierte_bestellungen_2.R;
@@ -23,6 +25,8 @@ public class BestellungenActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dbRef = database.getReference("Restaurants");
     TablelistModel tableListO = TablelistModel.getInstance();
+
+    GerichteModel gerichteListO = GerichteModel.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +51,19 @@ public class BestellungenActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int NumberOfTables = (int) snapshot.child("tische").getChildrenCount();
+                int NumberOfGerichte = (int) snapshot.child("speisekarte").getChildrenCount();
+
                 tableListO.setup(NumberOfTables);
+                gerichteListO.setup(NumberOfGerichte);
 
                 for(int x = 0; x < NumberOfTables; x++){
-                    String xString = String.format("%03d", (x + 1));
+                    String xString = "T" + String.format("%03d", (x + 1));
                     tableListO.getTischeArray()[x] = snapshot.child("tische").child(xString).getValue(Tische.class);
+                }
+
+                for(int x = 0; x < NumberOfGerichte; x++){
+                    String xString = "G" + String.format("%03d", (x + 1));
+                    gerichteListO.getGerichte()[x] = snapshot.child("speisekarte").child(xString).getValue(Gericht.class);
                 }
 
                 adapterBestellungen.notifyDataSetChanged();
@@ -59,7 +71,7 @@ public class BestellungenActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Handle error
+
             }
         });
     }

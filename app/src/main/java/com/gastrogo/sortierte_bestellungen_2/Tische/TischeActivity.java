@@ -54,12 +54,12 @@ public class TischeActivity extends AppCompatActivity implements RV_Adapter_Tisc
                 gerichteListO.setup(NumberOfGerichte);
 
                 for(int x = 0; x < NumberOfTables; x++){
-                    String xString = String.format("%03d", (x + 1));
+                    String xString = "T" + String.format("%03d", (x + 1));
                     tableListO.getTischeArray()[x] = snapshot.child("tische").child(xString).getValue(Tische.class);
                 }
 
                 for(int x = 0; x < NumberOfGerichte; x++){
-                    String xString = "G" + (x + 1);
+                    String xString = "G" + String.format("%03d", (x + 1));
                     gerichteListO.getGerichte()[x] = snapshot.child("speisekarte").child(xString).getValue(Gericht.class);
                 }
 
@@ -68,7 +68,7 @@ public class TischeActivity extends AppCompatActivity implements RV_Adapter_Tisc
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Handle error
+
             }
         });
     }
